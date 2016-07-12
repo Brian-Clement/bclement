@@ -15,6 +15,8 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Provides helper methods for Drupal render elements.
  *
+ * @ingroup utility
+ *
  * @see \Drupal\Core\Render\Element
  */
 class Element extends DrupalAttributes {
@@ -133,6 +135,36 @@ class Element extends DrupalAttributes {
       throw new \InvalidArgumentException('Cannot dynamically unset an element property. Use \Drupal\bootstrap\Utility\Element::hasProperty instead.');
     }
     parent::__unset($name);
+  }
+
+  /**
+   * Appends a property with a value.
+   *
+   * @param string $name
+   *   The name of the property to set.
+   * @param mixed $value
+   *   The value of the property to set.
+   *
+   * @return $this
+   */
+  public function appendProperty($name, $value) {
+    $property = &$this->getProperty($name);
+    $value = $value instanceof Element ? $value->getArray() : $value;
+
+    // If property isn't set, just set it.
+    if (!isset($property)) {
+      $property = $value;
+      return $this;
+    }
+
+    if (is_array($property)) {
+      $property[] = Element::create($value)->getArray();
+    }
+    else {
+      $property .= (string) $value;
+    }
+
+    return $this;
   }
 
   /**
@@ -388,6 +420,36 @@ class Element extends DrupalAttributes {
    */
   public function map(array $map) {
     \Drupal\Core\Render\Element::setAttributes($this->array, $map);
+    return $this;
+  }
+
+  /**
+   * Prepends a property with a value.
+   *
+   * @param string $name
+   *   The name of the property to set.
+   * @param mixed $value
+   *   The value of the property to set.
+   *
+   * @return $this
+   */
+  public function prependProperty($name, $value) {
+    $property = &$this->getProperty($name);
+    $value = $value instanceof Element ? $value->getArray() : $value;
+
+    // If property isn't set, just set it.
+    if (!isset($property)) {
+      $property = $value;
+      return $this;
+    }
+
+    if (is_array($property)) {
+      array_unshift($property, Element::create($value)->getArray());
+    }
+    else {
+      $property = (string) $value . (string) $property;
+    }
+
     return $this;
   }
 
