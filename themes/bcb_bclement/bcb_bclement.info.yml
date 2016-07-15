@@ -8,7 +8,9 @@ base theme : bootstrap_clean_blog
 regions:
   header: Header
   highlighted: Highlighted
+  left: Left
   content: Content
+  right: Right
   footer: Footer
 
 libraries:

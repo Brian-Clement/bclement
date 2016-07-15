@@ -66,6 +66,7 @@ function bcb_bclement_form_system_theme_settings_alter(&$form, FormStateInterfac
     'flickr' => t('Flickr'),
     'reddit' => t('Reddit'),
     'linkedin' => t('LinkedIn'),
+    'bitbucket' => t('Bitbucket'),
   ];
 
   foreach ($social_networks as $key => $name) {
