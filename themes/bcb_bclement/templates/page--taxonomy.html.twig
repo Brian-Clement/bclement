@@ -122,6 +122,7 @@
 <article>
   <div class="container-fluid">
     <div class="row">
+      {% if page.left is not empty %}
         <div class="col-lg-4 col-md-3">
           {{ page.left }}
         </div>
@@ -134,6 +135,17 @@
             {{ page.content }}
           {% endblock %}
         </div>
+      {% else %}
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          {{ page.highlighted }}
+
+          {# Content #}
+          {# {% block content %} #} {# determine why block declarations exist in an unmet if statement #}
+            <a id="main-content"></a>
+            {{ page.content }}
+          {#{% endblock %}#}
+        </div>
+      {% endif %}
     </div>
   </div>
 </article>
