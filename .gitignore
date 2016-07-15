@@ -34,3 +34,6 @@ sites/simpletest
 
 # Ignore SimpleTest multi-site environment.
 # simpletest
+
+# Ignore SASS cache
+themes/bcb_bclement/.sass-cache
