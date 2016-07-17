@@ -72,8 +72,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      {% if site_name %}
-        <a class="navbar-brand" href="{{ front_page }}" title="{{ 'Home'|t }}">{{ site_name }}</a>
+      {% if not is_front %}
+        <a class="navbar-brand" href="{{ front_page }}" title="{{ 'Home'|t }}">Home</a>
       {% endif %}
     </div>
 
