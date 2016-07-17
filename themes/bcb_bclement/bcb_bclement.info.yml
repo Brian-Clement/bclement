@@ -1,0 +1,17 @@
+name: BClement Theme
+type: theme
+description: A Bootstrap Clean Blog subtheme
+package: Custom
+core: 8.x
+base theme : bootstrap_clean_blog
+
+regions:
+  header: Header
+  highlighted: Highlighted
+  left: Left
+  content: Content
+  right: Right
+  footer: Footer
+
+libraries:
+  - bcb_bclement/global-styling
